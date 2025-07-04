@@ -1,0 +1,22 @@
+name: flutter_application_1
+description: A Flutter app that picks and displays PDF files (Android + Web)
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  file_picker: ^6.1.1
+  syncfusion_flutter_pdfviewer: ^24.2.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
