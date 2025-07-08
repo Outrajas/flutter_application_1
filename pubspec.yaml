@@ -13,6 +13,7 @@ dependencies:
   syncfusion_flutter_pdf: ^30.1.38
   pdfx: 2.9.2  # PDF viewer package
   path_provider: ^2.1.1  # For file handling
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
