@@ -1,22 +1,28 @@
 name: flutter_application_1
-description: View PDFs using file_selector (Web + Android)
+description: Clean and display important text from PDFs using on-device ML (Android only)
 
 version: 1.0.0
+
 environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  file_selector: ^1.0.3
+
   file_picker: ^10.2.0
-  syncfusion_flutter_pdf: ^30.1.38
-  pdfx: 2.9.2  # PDF viewer package
-  path_provider: ^2.1.1  # For file handling
+  file_selector: ^1.0.3
+  path_provider: ^2.1.1
   shared_preferences: ^2.2.2
   cupertino_icons: ^1.0.8
   provider: ^6.0.5
+  syncfusion_flutter_pdf: ^30.1.38
+  pdfx: 2.9.2
+  tflite_flutter: ^0.10.4
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/pdf_cleaner_model.tflite
+    - assets/tokenizer.json
