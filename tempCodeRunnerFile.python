@@ -1,0 +1,45 @@
+import json
+import re
+import unicodedata
+
+# === Path to tokenizer.json ===
+TOKENIZER_PATH = r"C:\Users\ojasa\Documents\flutter_application_1\assets\tokenizer.json"
+
+def clean_word(word):
+    # Normalize unicode
+    word = unicodedata.normalize('NFKC', word)
+    # Remove invisible soft hyphen, narrow space, zero-width space, etc.
+    word = re.sub(r"[\u00ad\u2009\u200b\u200c\u200d]", "", word)
+    return word.strip()
+
+# === Load original tokenizer ===
+with open(TOKENIZER_PATH, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+try:
+    word_counts_str = data["word_index"]["config"]["word_counts"]
+    raw_counts = json.loads(word_counts_str)
+except Exception as e:
+    raise ValueError(f"❌ Failed to load word_counts: {e}")
+
+# Clean and collect valid words
+cleaned_word_index = {}
+token_id = 1
+for raw_word in raw_counts.keys():
+    clean = clean_word(raw_word)
+    if clean and clean not in cleaned_word_index:
+        cleaned_word_index[clean] = token_id
+        token_id += 1
+
+# Ensure <OOV> exists at ID 1
+if "<OOV>" not in cleaned_word_index:
+    cleaned_word_index = {"<OOV>": 1, **{
+        k: v+1 for k, v in cleaned_word_index.items()
+    }}
+
+# Save cleaned tokenizer
+with open(TOKENIZER_PATH, "w", encoding="utf-8") as f:
+    json.dump({"word_index": cleaned_word_index}, f, indent=2, ensure_ascii=False)
+
+print("✅ tokenizer.json cleaned with Unicode normalization.")
+print(f"🔢 Total cleaned tokens preserved: {len(cleaned_word_index)}")
