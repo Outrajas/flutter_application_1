@@ -35,8 +35,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ojasa/.vscode/extensions/flutter_application_1/flutter_application_1",
-      "program": "c:/Users/ojasa/.vscode/extensions/flutter_application_1/flutter_application_1/build/Debug/outDebug",
+      "cwd": "c:/Users/ojasa/Documents/flutter_application_1/lib",
+      "program": "c:/Users/ojasa/Documents/flutter_application_1/lib/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
